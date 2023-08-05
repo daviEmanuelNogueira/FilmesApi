@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FilmesApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 public class FilmeController : ControllerBase
 {
 
@@ -28,6 +28,7 @@ public class FilmeController : ControllerBase
     /// <returns>IActionResult</returns>
     /// <response code="201">Caso inserção seja feita com sucesso</response>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult AdicionaFilme(
         [FromBody] CreateFilmeDto filmeDto)
@@ -46,8 +47,9 @@ public class FilmeController : ControllerBase
     /// <param name="skip">Quantidade de registros a serem pulados</param>
     /// <param name="take">Quantidade de registros a serem retornados</param>
     /// <returns>IActionResult</returns>
-    /// <response code="201">Caso a busca seja realizada com sucesso</response>
+    /// <response code="200">Caso a busca seja realizada com sucesso</response>
     [HttpGet]
+    [Route("[action]")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
@@ -55,7 +57,7 @@ public class FilmeController : ControllerBase
     }
 
     /// <summary>
-    /// Busca todos os filmes
+    /// Busca registro por id
     /// </summary>
     /// <param name="id">Id do filme que sera buscado</param>
     /// <returns>IActionResult</returns>
@@ -76,7 +78,7 @@ public class FilmeController : ControllerBase
     /// </summary>
     /// <param name="id">ID do filme a ser atualizado.</param>
     /// <param name="filmeDto">Objeto contendo os dados atualizados do filme.</param>
-    /// <returns>IActionResult</returns>
+    /// <returns>IActionResu10lt</returns>
     /// <response code="204">Caso a atualização seja feita com sucesso.</response>
     /// <response code="404">Caso o filme não seja encontrado.</response>
     [HttpPut("{id}")]
